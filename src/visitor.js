@@ -22,23 +22,24 @@ class Visitor {
   ///Saving the data to the files
   save() {
     let jsonArray = JSON.stringify(this, null, 4);
-    this.index = 0; ///Start of the index
-    do {
-      this.index++;
-    } while (fs.existsSync(`visitor_${this.fullName}_.json`)); ///If theres an existing file,increment the number by 1
 
-    let lowerCaseName = this.fullName.toLowerCase();
+    let lowerCaseName = this.fullName.replace(" ", "_"); ///Replacing the space with an underscore
+    lowerCaseName = lowerCaseName.toLowerCase(); ///Changing the name to lowercase
+
     fs.writeFile(`visitor_${lowerCaseName}_.json`, jsonArray, function(err) {
       if (err) {
         console.log("File could not be created"); ///If the could not be created,this message will be executed
       }
-      console.log("Data saved successfully"); ///This will be executed if file was successfuly created
+      console.log(`Data saved successfully for ${lowerCaseName}`); ///This will be executed if file was successfuly created
     });
   }
 }
-GDGDGDGSDGSD;
+
 function load(fullName) {
-  let lowerCaseName = fullName.toLowerCase();
+  // let whiteSpace= /\s+/g
+  let lowerCaseName = fullName.replace(" ", "_");
+  lowerCaseName = lowerCaseName.toLowerCase();
+
   fs.readFile(`visitor_${lowerCaseName}_.json`, "utf8", function(err, data) {
     if (err) {
       console.log("File could not be found");
@@ -47,7 +48,45 @@ function load(fullName) {
   });
 }
 
-let alice = new Visitor("ALICE", 200, "12-1-2312", "12:12", "None", "Andile");
+let alice = new Visitor(
+  "Alice Kellu",
+  200,
+  "12-1-2312",
+  "12:12",
+  "None",
+  "Andile"
+);
 
+let bob = new Visitor(
+  "Bob Jen",
+  22,
+  "06-11-2019",
+  "12:12",
+  "I am satisfied",
+  "Andile"
+);
+
+let kel = new Visitor(
+  "Kel Jenkins",
+  20,
+  "12-1-2019",
+  "12:12",
+  "I believe in his strengths",
+  "Andile"
+);
+
+let busi = new Visitor(
+  "Busi Nhlapho",
+  200,
+  "12-1-2312",
+  "12:12",
+  "None",
+  "Andile"
+);
+
+kel.save();
+busi.save();
 alice.save();
-// console.log(load("HELLO"));
+bob.save();
+
+// console.log(load("ALICE KELLU"));
