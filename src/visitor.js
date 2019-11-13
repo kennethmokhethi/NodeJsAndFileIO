@@ -36,7 +36,6 @@ class Visitor {
 }
 
 function load(fullName) {
-  constructor;
   let lowerCaseName = fullName.replace(" ", "_");
   lowerCaseName = lowerCaseName.toLowerCase();
   fs.readFile(`visitor_${lowerCaseName}_.json`, "utf8", function(err, data) {
