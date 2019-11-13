@@ -36,10 +36,9 @@ class Visitor {
 }
 
 function load(fullName) {
-  // let whiteSpace= /\s+/g
+  constructor;
   let lowerCaseName = fullName.replace(" ", "_");
   lowerCaseName = lowerCaseName.toLowerCase();
-
   fs.readFile(`visitor_${lowerCaseName}_.json`, "utf8", function(err, data) {
     if (err) {
       console.log("File could not be found");
@@ -89,4 +88,6 @@ busi.save();
 alice.save();
 bob.save();
 
-// console.log(load("ALICE KELLU"));
+console.log(load("ALICE KELLU"));
+console.log(load("Bob Jen"));
+console.log(load("Busi Nhlapho"));
