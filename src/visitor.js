@@ -25,9 +25,10 @@ class Visitor {
     this.index = 0; ///Start of the index
     do {
       this.index++;
-    } while (fs.existsSync(`visitor_${this.index}.json`)); ///If theres an existing file,increment the number by 1
+    } while (fs.existsSync(`visitor_${this.fullName}_.json`)); ///If theres an existing file,increment the number by 1
 
-    fs.writeFile(`visitor_${this.index}.json`, jsonArray, function(err) {
+    let lowerCaseName = this.fullName.toLowerCase();
+    fs.writeFile(`visitor_${lowerCaseName}_.json`, jsonArray, function(err) {
       if (err) {
         console.log("File could not be created"); ///If the could not be created,this message will be executed
       }
@@ -36,8 +37,9 @@ class Visitor {
   }
 }
 
-function load(index) {
-  fs.readFile(`visitor_${index}.json`, "utf8", function(err, data) {
+function load(fullName) {
+  let lowerCaseName = fullName.toLowerCase();
+  fs.readFile(`visitor_${lowerCaseName}_.json`, "utf8", function(err, data) {
     if (err) {
       console.log("File could not be found");
     }
@@ -45,13 +47,7 @@ function load(index) {
   });
 }
 
-let visitor1 = new Visitor(
-  "halesasdr",
-  200,
-  "12-1-2312",
-  "12:12",
-  "Hurrarne",
-  "jh"
-);
-visitor1.save();
-console.log(load(1));
+let alice = new Visitor("ALICE", 200, "12-1-2312", "12:12", "None", "Andile");
+
+alice.save();
+// console.log(load("HELLO"));
