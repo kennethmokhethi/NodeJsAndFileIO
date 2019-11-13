@@ -62,7 +62,7 @@ let bob = new Visitor(
   "06-11-2019",
   "12:12",
   "I am satisfied",
-  "Andile"
+  "Nicole Johns"
 );
 
 let kel = new Visitor(
@@ -71,16 +71,16 @@ let kel = new Visitor(
   "12-1-2019",
   "12:12",
   "I believe in his strengths",
-  "Andile"
+  "Isaac"
 );
 
 let busi = new Visitor(
   "Busi Nhlapho",
-  200,
+  30,
   "12-1-2312",
   "12:12",
   "None",
-  "Andile"
+  "Londy Gumede"
 );
 
 kel.save();
