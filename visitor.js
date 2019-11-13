@@ -1,3 +1,5 @@
+let fs = require("fs");
+
 class Visitor {
   ///Constructor for initialising the values
   constructor(
@@ -8,7 +10,7 @@ class Visitor {
     comments,
     nameOfPersonWhoAssistedTheVisistor
   ) {
-    this.index = 0;
+    this.index;
     this.fullName = fullName;
     this.age = age;
     this.dateOfVisit = dateOfVisit;
@@ -17,23 +19,29 @@ class Visitor {
     this.nameOfPersonWhoAssistedTheVisistor = nameOfPersonWhoAssistedTheVisistor;
   }
 
+  ///Saving the data to the files
   save() {
-    let fs = require("fs");
-    ++this.index;
-    let visitorObj = {
-      name: this.name,
-      Age: this.age,
-      "Data of Visit": this.dateOfVisit,
-      "Time of Visit": this.timeOfVists,
-      Comments: this.comments,
-      "Name of person who assisted the visitor": this
-        .nameOfPersonWhoAssistedTheVisistor
-    };
+    let jsonArray = JSON.stringify(this, null, 4);
+    this.index = 0; ///Start of the index
+    do {
+      this.index++;
+    } while (fs.existsSync(`visitor_${this.index}.json`)); ///If theres an existing file,increment the number by 1
 
-    let visitorData = JSON.stringify(visitorObj);
-    fs.writeFileSync(`visitor_${this.index}.json`, visitorData);
+    fs.writeFile(`visitor_${this.index}.json`, jsonArray, function(err) {
+      if (err) {
+        console.log("File could not be created"); ///If the could not be created,this message will be executed
+      }
+      console.log("Data saved successfully"); ///This will be executed if file was successfuly created
+    });
+  }
 
-    console.log("saved");
+  load(index) {
+    fs.readFile(`visitor_${index}.json`, "utf8", function(err, data) {
+      if (err) {
+        console.log("File could not be found");
+      }
+      console.log(data);
+    });
   }
 }
 
@@ -45,4 +53,16 @@ let visitor1 = new Visitor(
   "Hurrarne",
   "jh"
 );
-visitor1.save();
+// visitor1.save();
+
+// let visitor2 = new Visitor(
+//   "fffffffffffffffffff",
+//   200,
+//   "12-1-2312",
+//   "12:12",
+//   "Hurrarne",
+//   "jh"
+// );
+// visitor2.save();
+
+visitor1.load(3);

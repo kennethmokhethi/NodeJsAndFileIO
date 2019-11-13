@@ -16,7 +16,6 @@ let server = http
       }
       res.writeHead(200, { "Content-Type": "text/html" });
       res.write(data); //writing the data derived from index.html on the browseer
-      // res.write(req.url);
       return res.end(); //msg written on the website
     });
   })
