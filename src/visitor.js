@@ -36,7 +36,7 @@ class Visitor {
     });
   }
 }
-
+GDGDGDGSDGSD;
 function load(fullName) {
   let lowerCaseName = fullName.toLowerCase();
   fs.readFile(`visitor_${lowerCaseName}_.json`, "utf8", function(err, data) {
