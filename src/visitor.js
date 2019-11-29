@@ -1,5 +1,5 @@
 let fs = require("fs");
-
+//
 class Visitor {
   ///Constructor for initialising the values
   constructor(
@@ -33,6 +33,8 @@ class Visitor {
       }
       console.log("Data saved successfully"); ///This will be executed if file was successfuly created
     });
+
+    return `visitor_${this.index}.json`;
   }
 }
 
@@ -41,17 +43,24 @@ function load(index) {
     if (err) {
       console.log("File could not be found");
     }
-    console.log(data);
+    return data;
   });
 }
 
-let visitor1 = new Visitor(
-  "halesasdr",
-  200,
-  "12-1-2312",
-  "12:12",
-  "Hurrarne",
-  "jh"
-);
-visitor1.save();
-console.log(load(1));
+// let visitor1 = new Visitor(
+//   "halesasdr",
+//   200,
+//   "12-1-2312",
+//   "12:12",
+//   "Hurrarne",
+//   "jh"
+// );
+// visitor1.save();
+// console.log(load(1));
+
+(module.exports = Visitor), load;
+
+// let bob = new Visitor("bob Kellu", 200, "20-06-2019", "09:12", "None", "Gugu");
+// // console.log(alice.fullName);
+// bob.save();
+// console.log(load(1));
