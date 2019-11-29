@@ -1,5 +1,5 @@
 let fs = require("fs");
-
+//
 class Visitor {
   ///Constructor for initialising the values
   constructor(
@@ -32,6 +32,8 @@ class Visitor {
       }
       console.log(`Data saved successfully for ${lowerCaseName}`); ///This will be executed if file was successfuly created
     });
+
+    return `visitor_${lowerCaseName}.json`;
   }
 }
 
@@ -46,47 +48,4 @@ function load(fullName) {
   });
 }
 
-let alice = new Visitor(
-  "Alice Kellu",
-  200,
-  "12-1-2312",
-  "12:12",
-  "None",
-  "Andile"
-);
-
-let bob = new Visitor(
-  "Bob Jen",
-  22,
-  "06-11-2019",
-  "12:12",
-  "I am satisfied",
-  "Nicole Johns"
-);
-
-let kel = new Visitor(
-  "Kel Jenkins",
-  20,
-  "12-1-2019",
-  "12:12",
-  "I believe in his strengths",
-  "Isaac"
-);
-
-let busi = new Visitor(
-  "Busi Nhlapho",
-  30,
-  "12-1-2312",
-  "12:12",
-  "None",
-  "Londy Gumede"
-);
-
-kel.save();
-busi.save();
-alice.save();
-bob.save();
-
-console.log(load("ALICE KELLU"));
-console.log(load("Bob Jen"));
-console.log(load("Busi Nhlapho"));
+module.exports = Visitor;
